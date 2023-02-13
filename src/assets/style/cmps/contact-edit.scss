@@ -1,11 +1,24 @@
-.car-edit {
-    display: grid;
-    justify-items: start;
-    gap: 5px;
-    padding: 10px;
-    background-color: rgb(249, 197, 101);
-
-    button {
-        justify-self: end;
+.contact-edit {
+    // display: flex;
+    // justify-items: start;
+    // gap: 5px;
+    // padding: 10px;
+    h1{
+        color: darkcyan;
+        text-align: center;
+        font-weight: bold;
+        // font-size: 20px;
     }
+    input{
+        margin-block: 3px;
+        border-radius: 3em;
+        border: 1px solid lightgray;
+        padding: 5px 10px;
+        // margin: 5px;
+    }
+
+    // button {
+    // color: aliceblue;
+    // //     justify-self: end;
+    // }
 }

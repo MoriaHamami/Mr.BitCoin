@@ -1,7 +1,6 @@
 <template>
     <div class="contact-filter">
-        <p>Search</p>
-        <input @input="onFilter" v-model="filterBy.txt" type="text">
+        <input @input="onFilter" v-model="filterBy.txt" type="text" placeholder="Search contact...">
     </div>
 </template>
 

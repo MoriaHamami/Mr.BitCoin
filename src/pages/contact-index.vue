@@ -1,61 +1,67 @@
 <template>
-    <div class="main-container">
-        <UserMsg />
-        <ContactFilter @filter="onSetFilterBy" />
-        <ContactList @remove="removeContact" v-if="contacts" :contacts="filteredContacts" />
-        <!-- <RouterLink to="/contact/edit"><button>Add a Contact</button></RouterLink> -->
-    </div>
+  <div class="contact-index body">
+    <ContactFilter @filter="onSetFilterBy" />
+    <RouterLink to="/contact/edit"><button class="add-btn">Add a Contact</button></RouterLink>
+    <ContactList @remove="removeContact" v-if="contacts" :contacts="contacts" />
+  </div>
 </template>
 
 <script>
-import { contactService } from '@/services/contact.service.js'
-import { eventBus } from '@/services/eventBus.service.js'
+// import { contactService } from "@/services/contact.service.js";
+import { showErrorMsg, showSuccessMsg } from "@/services/eventBus.service.js";
 
-import ContactList from '@/cmps/contact-list.vue'
-import ContactFilter from '@/cmps/contact-filter.vue'
-import UserMsg from '@/cmps/user-msg.vue'
+import ContactList from "@/cmps/contact-list.vue";
+import ContactFilter from "@/cmps/contact-filter.vue";
 
 export default {
-    data() {
-        return {
-            contacts: null,
-            filterBy: {},
-        }
+  data() {
+    return {
+      contacts: this.$store.state.contactStore.contacts,
+      filterBy: {},
+    };
+  },
+  async created() {
+    this.$store.dispatch({ type: "loadContacts" });
+  },
+//   async mounted() {
+//     this.$store.dispatch({ type: "loadContacts" });
+//   },
+  methods: {
+    // async loadContacts() {
+    // },
+    async removeContact(contactId) {
+      try {
+        // await contactService.deleteContact(contactId);
+        this.$store.commit({ type: "removeContact", contactId });
+        showSuccessMsg(`Contact ${contactId} deleted.`);
+      } catch (err) {
+        showErrorMsg(`Cannot delete contact ${contactId}.`);
+      }
     },
-    async created() {
-        this.contacts = await contactService.getContacts()
+    onSetFilterBy(filterBy) {
+      this.filterBy = filterBy;
+      this.$store.dispatch({ type: "loadContacts", filterBy: this.filterBy });
     },
-    methods: {
-        async removeContact(contactId) {
-            const msg = {
-                txt: `Contact ${contactId} deleted.`,
-                type: 'success',
-                timeout: 2500,
-            }
-            await contactService.deleteContact(contactId)
-            this.contacts = this.contacts.filter(contact => contact._id !== contactId)
-            eventBus.emit('user-msg', msg)
-        },
-        onSetFilterBy(filterBy) {
-            this.filterBy = filterBy
-        },
+  },
+  computed: {
+    contactsFromStore() {
+      return this.$store.state.contactStore.contacts;
     },
-    computed: {
-        filteredContacts() {
-            const regex = new RegExp(this.filterBy.txt, 'i')
-            return this.contacts.filter(contact => regex.test(contact.vendor))
-        },
+  },
+  watch: {
+    contactsFromStore() {
+      this.contacts = this.$store.state.contactStore.contacts;
     },
-    components: {
-        ContactList,
-        ContactFilter,
-        UserMsg,
-    },
-}
+  },
+  components: {
+    ContactList,
+    ContactFilter,
+  },
+};
 </script>
 
 <style lang="scss">
 .main-container {
-    position: relative;
+  position: relative;
 }
 </style>

@@ -1,4 +1,23 @@
-.car-preview {
+.contact-preview {
     padding: 10px;
-    background-color: darkseagreen;
+    box-shadow: 0px 0px 3px 1px #00000054;
+    border-radius: 5px;
+    background-color: whitesmoke;
+
+    img{
+        width: 100%;
+    }
+
+    .preview-data > * {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .delete-btn{
+        // width: 50px;
+        // width: 20px;
+        // height: 20px;
+        padding: 5px;
+        width: 25px;
+    }
 }

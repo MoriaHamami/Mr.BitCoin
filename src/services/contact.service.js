@@ -10,10 +10,12 @@ export const contactService = {
 
 function sort(arr) {
     return arr.sort((a, b) => {
-        if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
+        // console.log('a:', a)
+        // console.log('b:', b)
+        if (a.name?.toLocaleLowerCase() < b.name?.toLocaleLowerCase()) {
             return -1;
         }
-        if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) {
+        if (a.name?.toLocaleLowerCase() > b.name?.toLocaleLowerCase()) {
             return 1;
         }
 
@@ -24,8 +26,9 @@ function sort(arr) {
 function getContacts(filterBy = null) {
     return new Promise((resolve, reject) => {
         var contactsToReturn = contacts;
-        if (filterBy && filterBy.term) {
-            contactsToReturn = filter(filterBy.term)
+
+        if (filterBy && filterBy.txt) {
+            contactsToReturn = filter(filterBy.txt)
         }
         resolve(sort(contactsToReturn))
     })

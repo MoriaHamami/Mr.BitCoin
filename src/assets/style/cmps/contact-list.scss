@@ -1,12 +1,14 @@
-.car-list {
+.contact-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 10px;
     
     padding: 10px;
-    background-color: lightgray;
+    background-color: aliceblue;
     list-style-type: none;
+
 }
+
 .list-move, /* apply transition to moving elements */
 .list-enter-active,
 .list-leave-active {

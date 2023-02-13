@@ -1,8 +1,14 @@
 footer {
     display: flex;
+    position: fixed;
     align-items: center;
-    height: 5vh;
-    
+    justify-content: center;
+    // flex-grow: 1;
+    width: 100%;
+    font-size: 13px;
+    height: 25px;
+    bottom: 0;
     padding-inline: 10px;
-    background-color: lightblue;
+    background-color: darkslategray;
+    color: aliceblue;
 }

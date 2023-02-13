@@ -1,9 +1,16 @@
 <template>
     <footer>
         <p>Coffeerights 2023</p>
+        <UserMsg />
     </footer>
 </template>
 
 <script>
-export default {}
+import UserMsg from './user-msg.vue'
+
+export default {
+     components: {
+        UserMsg,
+    },
+}
 </script>

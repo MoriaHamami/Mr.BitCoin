@@ -3,11 +3,16 @@ header {
     align-items: center;
     justify-content: space-between;
     
-    height: 5vh;
+    height: 50px;
     padding-inline: 10px;
-    background-color: lightblue;
-
+    background-color: darkcyan;
+    color: aliceblue;
+    
     a {
+        color: aliceblue;
         margin-inline-start: 1em;
+    }
+    a.active {
+        color: green;
     }
 }

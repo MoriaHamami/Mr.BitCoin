@@ -1,6 +1,6 @@
 <template>
-  <div v-if="contact" class="contact-details">
-    <img src="https://robohash.org/{{contact._id}}" />
+  <div v-if="contact" class="contact-details body">
+    <img :src="`https://robohash.org/${contact._id}`" />
     <h2>Name: {{ contact.name }}</h2>
     <h3>Email: {{ contact.email }}</h3>
     <h3>Phone: {{ contact.phone }}</h3>

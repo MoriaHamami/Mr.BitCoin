@@ -1,5 +1,5 @@
 <template>
-  <section class="home-page">
+  <section class="stats body">
     <article
       v-if="
         chartData.marketPriceHistory.datasets[0].data.length &&
@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       marketPriceHistory: [],
-      avgBlockSize: 0,
+      avgBlockSize: [],
       chartData: {
         // labels: {
           marketPriceHistory: {
