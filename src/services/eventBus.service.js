@@ -18,12 +18,12 @@ function createEventEmitter(defaultHandler = null){
 export const eventBus = createEventEmitter()
 
 export function showUserMsg(msg) {
-    eventBus.emit('show-msg', msg)
+    eventBus.emit('user-msg', msg)
 }
 
 export function showSuccessMsg(txt) {
-    showUserMsg({txt, type: 'success'})
+    showUserMsg({txt, type: 'success', timeout: 2500,})
 }
 export function showErrorMsg(txt) {
-    showUserMsg({txt, type: 'error'})
+    showUserMsg({txt, type: 'error', timeout: 2500,})
 }

@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// import { contactService } from "@/services/contact.service.js";
 import { showErrorMsg, showSuccessMsg } from "@/services/eventBus.service.js";
 
 import ContactList from "@/cmps/contact-list.vue";
@@ -16,22 +15,16 @@ import ContactFilter from "@/cmps/contact-filter.vue";
 export default {
   data() {
     return {
-      contacts: this.$store.state.contactStore.contacts,
-      filterBy: {},
+    //   contacts: this.$store.state.contactStore.contacts,
+    //   filterBy: {},
     };
   },
   async created() {
     this.$store.dispatch({ type: "loadContacts" });
   },
-//   async mounted() {
-//     this.$store.dispatch({ type: "loadContacts" });
-//   },
   methods: {
-    // async loadContacts() {
-    // },
     async removeContact(contactId) {
       try {
-        // await contactService.deleteContact(contactId);
         this.$store.commit({ type: "removeContact", contactId });
         showSuccessMsg(`Contact ${contactId} deleted.`);
       } catch (err) {
@@ -39,20 +32,22 @@ export default {
       }
     },
     onSetFilterBy(filterBy) {
-      this.filterBy = filterBy;
-      this.$store.dispatch({ type: "loadContacts", filterBy: this.filterBy });
+    //   this.filterBy = filterBy;
+      this.$store.dispatch({ type: "loadContacts", filterBy });
     },
   },
   computed: {
-    contactsFromStore() {
-      return this.$store.state.contactStore.contacts;
+    contacts() {
+              return this.$store.getters.contacts;
+
+    //   return this.$store.state.contactStore.contacts;
     },
   },
-  watch: {
-    contactsFromStore() {
-      this.contacts = this.$store.state.contactStore.contacts;
-    },
-  },
+//   watch: {
+//     contactsFromStore() {
+//       this.contacts = this.$store.state.contactStore.contacts;
+//     },
+//   },
   components: {
     ContactList,
     ContactFilter,

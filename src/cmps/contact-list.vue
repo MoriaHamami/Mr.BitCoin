@@ -35,9 +35,9 @@ export default {
     onRemoveContact(contactId) {
       this.$emit("remove", contactId);
     },
-    printThem() {
-      console.log("contacts:", contacts);
-    },
+    // printThem() {
+    //   console.log("contacts:", contacts);
+    // },
   },
   components: {
     ContactPreview,

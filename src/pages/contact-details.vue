@@ -11,6 +11,8 @@
       <li>${transaction}</li>
       ` })}} -->
     <!-- </ul> -->
+    <TransferFunds v-if="contact" :contact="contact" />
+    <TransactionList v-if="contact?.transactions" :transactions="contact.transactions"/>
     <RouterLink to="/contact">
       <button>Back</button>
     </RouterLink>
@@ -18,7 +20,11 @@
 </template>
 
 <script>
+import { showErrorMsg } from "@/services/eventBus.service.js";
 import { contactService } from "@/services/contact.service.js";
+import TransferFunds from "@/cmps/transfer-funds.vue";
+import  TransactionList from "@/cmps/transaction-list.vue";
+
 export default {
   data() {
     return {
@@ -26,8 +32,17 @@ export default {
     };
   },
   async created() {
-    const contactId = this.$route.params._id;
-    this.contact = await contactService.getContactById(contactId);
+    try {
+      const contactId = this.$route.params._id;
+      this.contact = await contactService.getContactById(contactId);
+    } catch {
+      this.$router.push("/contact");
+      showErrorMsg(`Contact not found`);
+    }
+  },
+  components: {
+    TransferFunds,
+    TransactionList,
   },
 };
 </script>

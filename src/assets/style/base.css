@@ -92,3 +92,10 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: darkgrey;
 }
+
+input{
+  border-radius: 3em;
+  border: 1px solid lightgray;
+  padding: 5px 10px;
+  margin: 5px 5px 5px 0;
+}

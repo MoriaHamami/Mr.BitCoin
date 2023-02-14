@@ -15,6 +15,8 @@
         // width: 300px
         width: 100%;
         max-width: 300px;
+        max-height: calc(100vh - 50px - 25px - 50px);
+        overflow-y: scroll;
         // width: minmax(500px, 100%);
     }
 }

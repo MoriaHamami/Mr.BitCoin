@@ -15,6 +15,7 @@ export default {
         }
     },
     created() {
+        // console.log('msg.txt:')
         this.unListen = eventBus.on('user-msg', this.showMsg)
     },
     unmounted() {

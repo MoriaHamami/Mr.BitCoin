@@ -65,13 +65,14 @@ export const contactStore = {
         async saveContact({ commit }, { contact }) {
             const actionType = (contact._id) ? 'updateContact' : 'addContact'
             try {
+                // console.log('here:')
                 const savedContact = await contactService.saveContact(contact)
+                // console.log('here:')
                 // Adds everything twice here because 
                 // contactService updates contacts hard coded in service
                 // and then it loads the contacts in index from service (and sets them in store)
                 // and then in save contacts it adds to the store contacts the contact 
                 // (which has already been added to store because of load)
-                // SO I PUT THIS IN COMMENT FOR NOW : 
                 commit({ type: actionType, contact: savedContact })
                 return savedContact
             } catch (err) {
